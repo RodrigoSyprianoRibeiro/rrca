@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle("Admin"); ?>
+
+    <link href="<?php echo $this->baseUrl("images/favicon.ico"); ?>" rel="shortcut icon" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <!-- Bootstrap 3.3.2 -->
+    <link href="<?php echo $this->baseUrl("bootstrap/css/bootstrap.min.css"); ?>" rel="stylesheet" type="text/css" />
+    <!-- FontAwesome 4.3.0 -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons 2.0.0 -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="<?php echo $this->baseUrl("dist/css/AdminLTE.min.css"); ?>" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="<?php echo $this->baseUrl("dist/css/skins/skin-green.min.css"); ?>" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+        var BASEURL = "<?php echo $this->baseUrl("/"); ?>";
+    </script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="skin-green">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="<?php echo $this->baseUrl("/admin"); ?>" class="logo"><img src="<?php echo $this->baseUrl("images/logo2.png"); ?>" alt="RRCA"/> <b>RRCA</b></a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="<?php echo $this->baseUrl("dist/img/".$this->usarioLogado->imagem.""); ?>" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs"><?php echo $this->usarioLogado->nome; ?></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="<?php echo $this->baseUrl("dist/img/".$this->usarioLogado->imagem.""); ?>" class="img-circle" alt="User Image" />
+                    <p>
+                      <?php echo $this->usarioLogado->nome; ?>
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'edit',
+                          'id' => $this->usarioLogado->id), null, 1); ?>" class="btn btn-default btn-flat">Ver Perfil</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="<?php echo $this->url(array('controller' => 'login', 'action' => 'logout', 'module' => 'admin'), null, 1); ?>" class="btn btn-default btn-flat">Sair</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- search form -->
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <span class="input-group-btn">
+                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">Menu</li>
+            <li class="treeview">
+              <?php if ($this->usarioLogado->perfil == 'admin') : ?>
+              <a href="<?php echo $this->url(array('controller' => 'usuario', 'module' => 'admin'), null, 1); ?>">
+                <i class="fa fa-edit"></i> <span>Usuários</span>
+              </a>
+              <?php endif; ?>
+              <a href="<?php echo $this->url(array('controller' => 'post', 'module' => 'admin'), null, 1); ?>">
+                <i class="fa fa-edit"></i> <span>Posts</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <?php echo $this->Layout()->content; ?>
+
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2015 <a href="<?php echo $this->baseUrl("/admin"); ?>">RRCA</a>.</strong> All rights reserved.
+      </footer>
+    </div><!-- ./wrapper -->
+
+  </body>
+</html>

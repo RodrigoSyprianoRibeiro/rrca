@@ -1,0 +1,82 @@
+<!-- DATA TABLES -->
+<link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Posts
+        <small>lista de posts</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="<?php echo $this->baseUrl("/admin"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
+        <li><a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'post'), null, 1); ?>">Usuários</a></li>
+        <li class="active">lista</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'post', 'action' => 'new'), null, 1); ?>">
+                <h3 class="box-title">Novo Post</h3>
+              </a>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <table id="tabelaUsuarios" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Título</th>
+                    <th>Criador</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php $modelUsuario = new Application_Model_Usuario(); ?>
+                <?php foreach($this->posts as $post): ?>
+                <?php $data = new DateTime($post['data']); ?>
+                    <tr>
+                        <td><?php echo $data->format('d/m/Y H:i'); ?></td>
+                        <td><?php echo $post['titulo']; ?></td>
+                        <td><?php echo $modelUsuario->getNomeUsuario($post['id_usuario']); ?></td>
+                        <td>
+                            <?php if ($post['id_usuario'] == $this->usarioLogado->id): ?>
+                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'post', 'action' => 'edit', 'id' =>$post['id']), null, 1); ?>"> Editar</a>
+                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'post', 'action' => 'delete', 'id' =>$post['id']), null, 1); ?>">Apagar</a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+              </table>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+<!-- jQuery 2.1.3 -->
+<script src="<?php echo $this->baseUrl("plugins/jQuery/jQuery-2.1.3.min.js"); ?>" ></script>
+<!-- Bootstrap 3.3.2 JS -->
+<script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap.min.js"); ?>" type="text/javascript"></script>
+<!-- DATA TABES SCRIPT -->
+<script src="<?php echo $this->baseUrl("plugins/datatables/jquery.dataTables.js"); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.js"); ?>" type="text/javascript"></script>
+<!-- SlimScroll -->
+<script src="<?php echo $this->baseUrl("plugins/slimScroll/jquery.slimscroll.min.js"); ?>" type="text/javascript"></script>
+<!-- FastClick -->
+<script src="<?php echo $this->baseUrl("plugins/fastclick/fastclick.min.js"); ?>" ></script>
+<!-- AdminLTE App -->
+<script src="<?php echo $this->baseUrl("dist/js/app.min.js"); ?>" type="text/javascript"></script>
+<!-- page script -->
+<script type="text/javascript">
+$(function () {
+    $("#tabelaUsuarios").dataTable();
+});
+</script>

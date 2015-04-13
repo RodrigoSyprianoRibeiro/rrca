@@ -1,0 +1,30 @@
+<?php
+    $this->headTitle()->prepend($this->post['titulo']);
+    $data = new DateTime($this->post['data']);
+    $urlPost = $this->baseUrl($this->post['url_post']);
+    if ($this->post['id'] == 1) {
+        $urlRedesSociais = 'http://rrca.esy.es/2015/03/20/1-reuniao-com-o-cliente-pit-stop-estacionamentos/';
+    } else {
+        $urlRedesSociais = 'http://rrca.esy.es/' . $this->post['url_post'];
+    }
+    //$numeroConmentarios = $this->getNumComentario($urlRedesSociais);
+    $modelUsuario = new Application_Model_Usuario();
+?>
+    <div class="post">
+        <div class="container">
+            <div class="conteudo">
+                <h4><?php echo $data->format('d/m/Y H:i'); ?></h4>
+                <h3><?php echo $this->post['titulo']; ?></h3>
+                <p><strong>Publicado por:</strong> <?php echo $modelUsuario->getNomeUsuario($this->post['id_usuario']); ?></p>
+                <div class="strip"></div>
+                <p><?php echo $this->post['conteudo']; ?></p>
+                <div class="strip"></div>
+                <!-- <div><strong><?php //echo $numeroConmentarios; ?></strong></div> -->
+            </div>
+            <div class="redes_sociais">
+                <div class="fb-like" data-href="<?php echo $urlRedesSociais; ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" ></div>
+                <div class="fb-share-button" data-href="<?php echo $urlRedesSociais; ?>" data-type="button" ></div>
+            </div>
+            <div class="fb-comments" data-href="<?php echo $urlRedesSociais; ?>" data-width="600px" data-numposts="5" data-colorscheme="light" data-order-by="time" ></div>
+        </div>
+    </div>

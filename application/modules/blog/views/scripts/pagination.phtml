@@ -1,0 +1,14 @@
+<div class="pagination">
+    <!-- Link para a Próxima página -->
+    <?php if (isset($this->next)): ?>
+        <a href="<?php echo $this->baseUrl('pagina/'.$this->next); ?>">← Mais antigos</a>
+    <?php endif; ?>
+    <br />
+    <!-- Link para a página anterior -->
+    <?php
+        if (isset($this->previous)): 
+            $page = $this->previous == 1 ? '' : 'pagina/'.$this->previous;
+    ?>
+        <a href="<?php echo $this->baseUrl($page); ?>">Mais recentes →</a>
+    <?php endif; ?>
+</div>

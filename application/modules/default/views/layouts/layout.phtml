@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle('Desenvolvimento de Software'); ?>
+
+    <link href="<?php echo $this->baseUrl("images/favicon.ico"); ?>" rel="shortcut icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="<?php echo $this->baseUrl("css/bootstrap.css"); ?>" rel="stylesheet" type="text/css" media="all">
+    <link href="<?php echo $this->baseUrl("css/style.css"); ?>" rel="stylesheet" type="text/css" media="all" />
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl("js/jquery.min.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl("js/move-top.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl("js/easing.js"); ?>"></script>
+    <script type="text/javascript">
+        var BASEURL = "<?php echo $this->baseUrl("/"); ?>";
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+</head>
+<body>
+    <?php //if ($request->getModuleName() != 'blog'): ?>
+    <!-- banner -->
+    <div id="home" class="banner">
+        <div class="container">
+            <div class="banner-info text-center">
+                <img src="<?php echo $this->baseUrl("images/logo.png"); ?>" alt="RRCA"/>
+                <h2>NÓS SOMOS A RRCA! NÓS DESENVOLVEMOS</h2>
+                <h1>SISTEMAS WEB</h1>
+                <h2>COM A PREOCUPAÇÃO NA PERFORMANCE E NA EXPERIÊNCIA DO USUÁRIO</h2>
+                <div class="learnmore"><a href="#about" class="hvr-sweep-to-right button">SAIBA MAIS</a></div>
+                <div class="arrow-icon"><a class="scroll" href="#about"><img src="<?php echo $this->baseUrl("images/3.png"); ?>" alt=" "/></a></div>
+            </div>
+            </div>
+    </div>
+    <!-- //banner -->
+    <?php //endif; ?>
+    <!-- navigation -->
+    <div class="navigation">
+        <div class="wrap">
+            <div class="fixed-header">
+                <div class="nav-left">
+                    <a href="<?php echo $this->baseUrl("/"); ?>"><img src="<?php echo $this->baseUrl("images/logo2.png"); ?>" alt=""/></a>
+                </div>
+                <div class="nav-right">
+                    <span class="menu"><img src="<?php echo $this->baseUrl("images/menu.png"); ?>" alt="" /></span>
+                        <nav class="cl-effect-1">
+                            <ul class="nav1">
+                                <li><a class="scroll" href="#home">PÁGINA INICIAL</a></li>
+                                <li><a class="scroll" href="#about">QUEM SOMOS</a></li>
+                                <li><a class="scroll" href="#what-we-do">O QUE FAZEMOS</a></li>
+                                <li><a class="scroll" href="#contact">CONTATO</a></li>
+                                <li><a class="" href="<?php echo $this->baseUrl("/blog"); ?>">BLOG</a></li>
+                                <li><a class="" href="<?php echo $this->baseUrl("/admin"); ?>">LOGIN</a></li>
+                            </ul>
+                        </nav>
+                        <!-- script for menu -->
+                        <script>
+                            $( "span.menu" ).click(function() {
+                                $( "ul.nav1" ).slideToggle( 300, function() {
+                                // Animation complete.
+                                });
+                            });
+                        </script>
+                        <!-- //script for menu -->
+                        <!-- script-for sticky-nav -->
+                        <script>
+                        $(document).ready(function() {
+                            var navoffeset=$(".navigation").offset().top;
+                            $(window).scroll(function(){
+                                var scrollpos=$(window).scrollTop();
+                                if(scrollpos >=navoffeset){
+                                    $(".navigation").addClass("fixed");
+                                }else{
+                                    $(".navigation").removeClass("fixed");
+                                }
+                            });
+                        });
+                        </script>
+                        <!-- /script-for sticky-nav -->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- //navigation -->
+
+    <?php echo $this->Layout()->content; ?>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-left">
+                <p>Copyright &copy; 2015 RRCA.</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- //footer -->
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+            */
+            $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+    </body>
+</html>
