@@ -13,7 +13,11 @@ foreach ($this->posts as $post):
                 <h3><a href="<?php echo $urlPost; ?>"><?php echo $post['titulo']; ?></a></h3>
                 <p><strong>Publicado por:</strong> <?php echo $modelUsuario->getNomeUsuario($post['id_usuario']); ?></p>
                 <div class="strip"></div>
-                <p><?php echo $post['conteudo']; ?></p>
+                <p style="text-align: center;">
+                  <a href="<?php echo $urlPost; ?>">
+                    <img src="http://rrca.esy.es/images/capa_post/<?php echo $post['imagem_capa']; ?>.jpg" style="height:auto; max-width: 500px;" />
+                  </a>
+                </p>
                 <div class="strip"></div>
                 <!-- <div><strong><?php //echo $numeroConmentarios; ?></strong></div> -->
             </div>

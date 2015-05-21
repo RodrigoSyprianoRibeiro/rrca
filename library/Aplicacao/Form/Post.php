@@ -18,6 +18,16 @@ class Aplicacao_Form_Post extends Zend_Form
               ->setAttrib('title', 'Informe o Título');
         $this->addElement($titulo);
 
+        $imagem = new Zend_Form_Element_Text('imagem_capa');
+        $imagem->setLabel('Caminho Imagem:')
+                ->setRequired(true)
+                ->addFilter('StringTrim')
+                ->addValidator('NotEmpty')
+                ->setAttrib('class', 'form-control')
+                ->setAttrib('placeholder', 'Entre com o Caminho da Imagem')
+                ->setAttrib('title', 'Informe o Caminho da Imagem');
+        $this->addElement($imagem);
+
         $conteudo = new Zend_Form_Element_Textarea('conteudo');
         $conteudo->setLabel('Conteudo:')
               ->setRequired(true)
